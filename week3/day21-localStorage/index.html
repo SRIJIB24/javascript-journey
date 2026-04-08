@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherApi</title>
+  </head>
+  <body>
+    <h1 style="text-align: center; margin-top: 20px; color: cadetblue">
+      Weather Api
+    </h1>
+    <div
+      style="font-family: Times New Roman; text-align: center; margin-top: 50px"
+    >
+      <p style="font-size: 27px">Input City Name And Get Weather Details</p>
+      <input
+        type="text"
+        id="citynm"
+        placeholder="Enter City Name"
+        style="
+          height: 36px;
+          width: 300px;
+          border-radius: 5px;
+          border: 2px solid gray;
+          padding: 5px;
+        "
+      />
+      <button
+        id="weatherBtn"
+        style="
+          height: 47px;
+          width: 120px;
+          padding: 10px;
+          background-color: cadetblue;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        "
+      >
+        Get Weather
+      </button>
+    </div>
+    <div id="weatherInfo" style="text-align: center"></div>
+  </body>
+  <script src="index.js"></script>
+</html>

@@ -9,19 +9,30 @@ const weatherInfo = document.getElementById("weatherInfo");
 
 async function getWeather() {
   const city = citynm.value;
-  let url = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ed9b0275ce9fdbeb1830d51f3bfe9d51&units=metric`,
-  );
-  let data = await url.json();
+  if (city.trim() === "") {
+    weatherInfo.innerHTML = "<p>Please enter a city name</p>";
+    return;
+  }
+  try {
+    let url = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=ed9b0275ce9fdbeb1830d51f3bfe9d51&units=metric`,
+    );
+    let data = await url.json();
+    console.log(data);
+    if (data.cod === "404") {
+      weatherInfo.innerHTML = "<p>city not found</p>";
+      return;
+    }
 
-  weatherInfo.innerHTML = `
+    weatherInfo.innerHTML = `
     <h2>Weather in ${data.name}</h2>
     <p>Temperature: ${data.main.temp} °C</p>
     <p>Humidity: ${data.main.humidity} %</p>
     <p>Wind Speed: ${data.wind.speed} m/s</p>
     `;
-  weatherInfo.innerHTML = "<p>Error fetching weather data</p>";
-
+  } catch (error) {
+    weatherInfo.innerHTML = "<p>Error fetching weather data</p>";
+  }
   citynm.value = "";
 }
 
